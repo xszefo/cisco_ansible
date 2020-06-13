@@ -6,7 +6,7 @@
   tasks:
     - name: Get facts
       nxos_command:
-         commands: show version
+         commands: show ip interface brief
          provider:
                username: "{{ username }}"
                password: "{{ password }}"
@@ -16,11 +16,8 @@
                timeout: 30
                use_ssl: yes
                validate_certs: no
-      register: version
+      register: interfaces
     - name: Print results
       debug:
          msg: 
-           - "{{ version.stdout[0].manufacturer }}"
-           - "{{ version.stdout[0].chassis_id }}"
-           - "{{ version.stdout[0].host_name }}"
-           - "{{ version.stdout[0].nxos_ver_str }}"
+            - "{{ interfaces.stdout[0] }}"

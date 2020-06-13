@@ -1,10 +1,10 @@
 ---
-- name: First playbook
+- name: Get version from CLI
   hosts: all
   gather_facts: no
   connection: local
   tasks:
-    - name: Get facts
+    - name: Issue command
       nxos_command:
          commands: show version
          provider:

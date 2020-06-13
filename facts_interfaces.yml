@@ -1,0 +1,24 @@
+---
+- name: Get interfaces from facts
+  hosts: all
+  gather_facts: no
+  connection: local
+  tasks:
+    - name: Get interfaces facts
+      nxos_facts:
+         gather_subset: interfaces
+         provider:
+               username: "{{ username }}"
+               password: "{{ password }}"
+               port: "{{ port }}"
+               host: "{{ ansible_host }}"
+               transport: "{{ transport }}"
+               timeout: 60
+               use_ssl: yes
+               validate_certs: no
+      register: interfaces
+    - name: Print
+      debug:
+        msg: 
+            - "{{ interfaces }}"
+

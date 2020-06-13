@@ -1,0 +1,26 @@
+---
+- name: First playbook
+  hosts: all
+  gather_facts: no
+  connection: local
+  tasks:
+    - name: Get facts
+      nxos_command:
+         commands: show version
+         provider:
+               username: "{{ username }}"
+               password: "{{ password }}"
+               port: "{{ port }}"
+               host: "{{ ansible_host }}"
+               transport: "{{ transport }}"
+               timeout: 30
+               use_ssl: yes
+               validate_certs: no
+      register: version
+    - name: Print results
+      debug:
+         msg: 
+           - "{{ version.stdout[0].manufacturer }}"
+           - "{{ version.stdout[0].chassis_id }}"
+           - "{{ version.stdout[0].host_name }}"
+           - "{{ version.stdout[0].nxos_ver_str }}"

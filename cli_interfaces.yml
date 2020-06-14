@@ -1,6 +1,6 @@
 ---
 - name: Get interfaces from CLI
-  hosts: all
+  hosts: nexus
   gather_facts: no
   connection: local
   tasks:

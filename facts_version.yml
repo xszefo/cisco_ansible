@@ -1,6 +1,6 @@
 ---
 - name: Get version from facts
-  hosts: all
+  hosts: nexus
   gather_facts: no
   connection: local
   tasks:
@@ -16,7 +16,6 @@
                timeout: 30
                use_ssl: yes
                validate_certs: no
-      register: hardware
     - name: Print
       debug:
         msg: 

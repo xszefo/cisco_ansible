@@ -1,0 +1,12 @@
+---
+- name: Get version from CLI
+  hosts: csr
+  gather_facts: no
+  connection: network_cli
+  tasks:
+    - name: Issue command
+      ios_config:
+         parents: interface Loopback192
+         lines:
+           - description Ansible_PS
+           - ip address 192.168.192.10 255.255.255.0

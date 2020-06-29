@@ -1,0 +1,9 @@
+---
+- name: Get version from CLI
+  hosts: csr
+  gather_facts: no
+  connection: network_cli
+  tasks:
+    - name: Issue command
+      ios_command:
+         commands: show version
